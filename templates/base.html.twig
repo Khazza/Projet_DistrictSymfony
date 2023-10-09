@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			The District - Restaurant et Commande en Ligne!
+			{% block title %}{% endblock %}
+		</title>
+		<link rel="stylesheet" href="{{ asset('css/style.css') }}">
+		<link
+		rel="icon" href="{{ asset('img/the_district_brand/favicon.png') }}">
+		<!-- Bootstrap CSS -->
+		<link
+		href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+		<!-- Font Awesome CSS-->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet"> 
+		{% block stylesheets %}{% endblock %}
+		</head>
+		<body>
+			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+				<a class="navbar-brand ms-3" href="{{ path('app_home') }}">
+					<img src="{{ asset('img/the_district_brand/logo_transp.png') }}" alt="Logo" height="60">
+				</a>
+
+				<!-- Toggle button -->
+				<button class="navbar-toggler me-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<!-- Navbar links -->
+				<div class="collapse navbar-collapse" id="navbarNav">
+					<ul class="navbar-nav mr-auto mx-2">
+						<li class="nav-item">
+							<a class="nav-link" href="{{ path('app_home') }}">Accueil</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{ path('categories_list') }}">Catégories</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{ path('plats_list') }}">Plats</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{ path('app_contact') }}">Contact</a>
+						</li>
+					</ul>
+
+					<!-- Login and register -->
+					<ul class="navbar-nav ms-auto d-flex align-items-center">
+						{% if app.user %}
+							<li class="nav-item d-flex align-items-center">
+								<span class="navbar-text mx-1 border-end border-light pe-2">Bonjour, {{ app.user.prenom }}</span>
+							</li>
+							<!-- Cart button -->
+							<li class="nav-item d-flex align-items-center me-3">
+								<a class="nav-link d-flex align-items-center border-end border-light" href="{{ path('panier') }}">
+									<span class="title-cart me-2">Mon Panier:</span>
+									<i class="fas fa-shopping-cart me-1"></i>
+									<span class="badge bg-light text-dark">
+										{{ app.session.get('panierTotal', 0) }}
+									</span>
+								</a>
+							</li>
+							<!-- Bouton d'accès au profil -->
+							<li class="nav-item d-flex align-items-center">
+								<a class="btn btn-outline-light mx-1" href="{{ path('app_profil') }}">Mon Profil</a>
+							</li>
+							<li class="nav-item d-flex align-items-center">
+								<a class="btn btn-outline-light mx-1" href="{{ path('app_logout') }}">Se déconnecter</a>
+							</li>
+						{% else %}
+							<li class="nav-item">
+								<a class="btn btn-outline-light mx-1 my-1" href="{{ path('app_login') }}">S'identifier</a>
+							</li>
+							<li class="nav-item">
+								<a class="btn btn-outline-light mx-1 my-1" href="{{ path('app_register') }}">S'enregistrer</a>
+							</li>
+						{% endif %}
+					</ul>
+				</div>
+			</nav>
+
+			<div class="main-content-wrapper"> {% block body %}{% endblock %}
+				</div>
+
+				<footer class="footer text-center py-3 mt-2 bg-dark text-white">
+					<div class="container d-flex align-items-center justify-content-between h-100 flex-md-row flex-column">
+						<div class="text-md-start text-center mb-md-0 mb-3">
+							<a href="{{ path('legal_mentions') }}" class="mr-3 footer-link text-sm text-white">Mentions légales</a>
+							<a href="{{ path('privacy_policy') }}" class="mr-3 footer-link text-sm text-white">Politique de confidentialité</a>
+						</div>
+
+						<div class="text-md-end text-center">
+							<a href="#" class="ms-3 text-white">
+								<i class="fab fa-facebook fa-lg"></i>
+							</a>
+							<a href="#" class="ms-3 text-white">
+								<i class="fab fa-twitter fa-lg"></i>
+							</a>
+							<a href="#" class="ms-3 text-white">
+								<i class="fab fa-instagram fa-lg"></i>
+							</a>
+						</div>
+					</div>
+				</footer>
+
+
+				<script src="{{ asset('js/script.js') }}"></script>
+				<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
+				<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+				<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js"></script>
+				<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+				{% block javascripts %}{% endblock %}
+			</body>
+		</html>

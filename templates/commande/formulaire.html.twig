@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Formulaire de commande{% endblock %}
+
+{% block body %}
+
+<div class="container commande-page">
+    <h1 class="text-center my-5">Formulaire de commande</h1>
+
+    {% if nouveau_panier and nouveau_panier|length > 0 %}
+        <div class="commande-recap d-flex justify-content-center">
+        <div class="panier-recap mb-5 col-6">
+            <h2>Récapitulatif du panier</h2>
+            <ul class="list-group">
+                {% set total = 0 %}
+                {% for article in nouveau_panier %}
+                    {% set total = total + (article.plat.prix * article.quantite) %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        {{ article.plat.libelle }} x{{ article.quantite }}
+                        <span class="badge bg-primary rounded-pill">{{ (article.plat.prix * article.quantite)|number_format(2, ',', ' ') }} €</span>
+                    </li>
+                {% endfor %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Total
+                    <span class="badge bg-primary rounded-pill">{{ total|number_format(2, ',', ' ') }} €</span>
+                </li>
+            </ul>
+        </div>
+        </div>
+    {% endif %}
+    
+    {{ form_start(form, {'attr': {'class': 'row g-3 needs-validation', 'novalidate': 'novalidate'}}) }}
+
+    <div class="col-md-6">
+        <h2>Adresse de livraison</h2>
+        
+        {{ form_label(form.adresseLivraison, null, {'label_attr': {'class': 'form-label'}}) }}
+        {{ form_widget(form.adresseLivraison) }}
+        {{ form_errors(form.adresseLivraison) }}
+        
+        {{ form_label(form.codePostalLivraison, null, {'label_attr': {'class': 'form-label'}}) }}
+        {{ form_widget(form.codePostalLivraison) }}
+        {{ form_errors(form.codePostalLivraison) }}
+    
+        {{ form_label(form.villeLivraison, null, {'label_attr': {'class': 'form-label'}}) }}
+        {{ form_widget(form.villeLivraison) }}
+        {{ form_errors(form.villeLivraison) }}
+    </div>
+
+    <div class="col-md-6">
+        <h2>Adresse de facturation</h2>
+        {{ form_label(form.adresseFacturation, null, {'label_attr': {'class': 'form-label'}}) }}
+        {{ form_widget(form.adresseFacturation) }}
+        {{ form_errors(form.adresseFacturation) }}
+
+        {{ form_label(form.codePostalFacturation, null, {'label_attr': {'class': 'form-label'}}) }}
+        {{ form_widget(form.codePostalFacturation) }}
+        {{ form_errors(form.codePostalFacturation) }}
+
+        {{ form_label(form.villeFacturation, null, {'label_attr': {'class': 'form-label'}}) }}
+        {{ form_widget(form.villeFacturation) }}
+        {{ form_errors(form.villeFacturation) }}
+    </div>
+    
+<div class="pay-main d-flex justify-content-center">
+    <div class="col-6">
+        <h2>Mode de paiement</h2>
+        {{ form_label(form.modePaiement, null, {'label_attr': {'class': 'form-label'}}) }}
+        {{ form_widget(form.modePaiement, {'attr': {'class': 'form-select mb-3'}}) }}
+    </div>
+</div>
+<div class="col-12 d-flex justify-content-center">
+    <div class="form-check">
+        {{ form_widget(form.accepterCGU, {'label_attr': {'class': 'form-check-label me-2'}, 'attr': {'class': 'form-check-input'}}) }}
+        {{ form_label(form.accepterCGU) }}
+        {{ form_errors(form.accepterCGU) }}
+    </div>
+</div>
+
+    <div class="col-12 text-center">
+        <button type="submit" class="btn btn-primary btn-lg">Valider la commande</button>
+    </div>
+
+    {{ form_end(form) }}
+</div>
+
+{% endblock %}

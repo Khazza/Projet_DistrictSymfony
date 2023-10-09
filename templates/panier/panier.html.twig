@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Votre Panier{% endblock %}
+
+    {% block body %}
+
+        <div class="container">
+            <h1 class="my-4">Panier</h1>
+            <div class="mb-3">
+                <a href="{{ referer ?: path('app_panier') }}" class="btn btn-secondary">Retour aux plats</a>
+                <a href="{{ path('panier_vider') }}" class="btn btn-danger">Vider le panier</a>
+            </div>
+
+            {% if detailPanier is not empty %}
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Plat</th>
+                            <th>Catégorie</th>
+                            <th>Prix unitaire</th>
+                            <th>Quantité</th>
+                            <th>Prix total</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% set total = 0 %}
+                        {% for item in detailPanier %}
+                            {% set total = total + (item.plat.prix * item.quantite) %}
+                            <tr>
+                                <td>{{ item.plat.libelle }}</td>
+                                <td>{{ item.categorie.libelle }}</td>
+                                <td>{{ item.plat.prix }} €</td>
+                                <td>
+                                    <a href="{{ path('panier_ajout', {'id': item.plat.id}) }}" class="btn btn-sm btn-primary">+</a>
+                                    {{ item.quantite }}
+                                    <a href="{{ path('panier_retrait', {'id': item.plat.id}) }}" class="btn btn-sm btn-primary">-</a>
+                                </td>
+                                <td>{{ (item.plat.prix * item.quantite)|number_format(2, '.', ',') }} €</td>
+                                <td>
+                                    <a href="{{ path('panier_supprimer', {'id': item.plat.id}) }}" class="btn btn-sm btn-danger">Supprimer</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        <tr>
+                            <td colspan="4" class="text-end"><strong>Total</strong></td>
+                            <td><strong>{{ total|number_format(2, '.', ',') }} €</strong></td>
+                            <td>
+                                <a href="{{ path('app_commande') }}" class="btn btn-success">Passer à la commande</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+        
+    {% else %}
+        <div class="alert alert-info">Votre panier est vide. 
+            <a href="{{ path('app_panier') }}" class="alert-link">Retournez à la boutique pour ajouter des articles.</a>
+        </div>
+    {% endif %}
+</div>
+
+{% endblock %}

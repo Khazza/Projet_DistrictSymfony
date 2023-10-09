@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello TestController!{% endblock %}
+
+{% block body %}
+
+    {% for plat in plats %}
+    
+    <div>
+        {{ plat.libelle }}
+        <a href="{{ path('panier_ajout', {'id': plat.id}) }}">ajouter au panier</a>
+    </div>
+    {% endfor %}
+
+{% endblock %}

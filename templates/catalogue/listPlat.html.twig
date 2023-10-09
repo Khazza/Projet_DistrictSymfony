@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tous les plats
+{% endblock %}
+
+{% block body %}
+	<div class="container mt-2">
+		<div class="jumbotron text-center bg-primary text-white">
+			<h1 class="display-4">Découvrez nos plats</h1>
+			<p class="lead">Sélectionnez un plat pour commander.</p>
+			<select id="filter-category" class="mb-4">
+				<option value="all">Catégories</option>
+				{% for category, plats in platsByCategories %}
+					<option value="{{ category }}">{{ category }}</option>
+				{% endfor %}
+			</select>
+		</div>
+        {% for category, plats in platsByCategories %}
+            <h2 class="section-titlePlat mb-4 category-title" id="{{ category }}">{{ category }}</h2>
+            <div class="row category-group" data-category="{{ category }}">
+                {% for plat in plats %}
+                    <div class="col-md-6 mb-4">
+                        <div class="card horizontal-plat-card mb-3 h-100">
+                            <div class="row h-100 g-0">
+                                <div class="col-md-4">
+                                    <img src="{{ asset('img/food/' ~ plat.image) }}" class="img-fluid rounded-start" alt="{{ plat.libelle }}">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body h-100 d-flex flex-column">
+                                        <h5 class="card-title">{{ plat.libelle }}</h5>
+										<div class='flex-grow-1'>
+                                            <p class="card-text">{{ plat.description }}</p>
+										</div>
+										<div class="card-footer text-end d-flex justify-content-between align-items-center">
+                                            <p class="card-text mb-0"><strong>Prix : </strong>{{ plat.prix }} €</p>
+                                            <a href="{{ path('panier_ajout', {'id': plat.id}) }}" class="btn btn-primary">Ajouter au panier</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+        
+    </div>
+{% endblock %}

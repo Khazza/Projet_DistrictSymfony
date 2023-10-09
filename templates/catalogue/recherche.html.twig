@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Résultats de la recherche{% endblock %}
+
+{% block body %}
+<div class="container mt-2">
+    <h2 class="mb-4">Résultats de la recherche pour "{{ query }}"</h2>
+
+    <h3 class="my-4 section-title">Catégories</h3>
+    <div class="row justify-content-center">
+        {% if categories %}
+            {% for categorie in categories %}
+                <div class="col-md-4 mb-4">
+                    <div class="card recherche-category-card">
+                        <!-- Ajout d'une image ici -->
+                            <img src="{{ asset('img/category/' ~ categorie.image) }}" class="card-img-top" alt="{{ categorie.libelle }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ categorie.libelle }}</h5>
+                            <a href="{{ path('category_plats', {'id': categorie.id}) }}" class="btn btn-primary">Voir les plats</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>Aucune catégorie trouvée</p>
+        {% endif %}
+    </div>
+    
+    <h3 class="my-4 section-title">Plats</h3>
+    <div class="row">
+        {% if plats %}
+            {% for plat in plats %}
+                <div class="col-md-6 mb-4">
+                    <div class="card horizontal-plat-card mb-3 h-100">
+                        <div class="row h-100 g-0">
+                            <div class="col-md-4">
+                                <img src="{{ asset('img/food/' ~ plat.image) }}" class="img-fluid rounded-start" alt="{{ plat.libelle }}">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body h-100 d-flex flex-column">
+                                    <h5 class="card-title">{{ plat.libelle }}</h5>
+                                    <div class='flex-grow-1'>
+                                        <p class="card-text">{{ plat.description }}</p>
+                                    </div>
+                                    <div class="card-footer text-end d-flex justify-content-between align-items-center">
+                                        <p class="card-text mb-0">
+                                            <strong>Prix :</strong> {{ plat.prix }} €
+                                        </p>
+                                        <a href="{{ path('panier_ajout', {'id': plat.id}) }}" class="btn btn-primary">Ajouter au panier</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>Aucun plat trouvé</p>
+        {% endif %}
+    </div>
+
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-12 text-center">
+            <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-center">
+                <li class="page-item {% if current_page == 1 %}disabled{% endif %}">
+                    <a class="page-link" href="{{ path('app_recherche', {'q': query, 'page': current_page - 1}) }}" tabindex="-1">Précédent</a>
+                </li>
+                {% for i in 1..total_pages %}
+                    <li class="page-item {% if i == current_page %}active{% endif %}">
+                        <a class="page-link" href="{{ path('app_recherche', {'q': query, 'page': i}) }}">{{ i }}</a>
+                    </li>
+                {% endfor %}
+                <li class="page-item {% if current_page == total_pages %}disabled{% endif %}">
+                    <a class="page-link" href="{{ path('app_recherche', {'q': query, 'page': current_page + 1}) }}">Suivant</a>
+                </li>
+            </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+{% endblock %}

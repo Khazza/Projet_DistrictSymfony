@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil{% endblock %}
+
+{% block body %}
+    <div class="container profile-container">
+        <div class="profile-card">
+            <h1>Bonjour, <span>{{ user.prenom }}</span> !</h1>
+            <div class="card-header-profil">
+                Informations du profil
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Vos détails</h5>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><label>Prénom:</label> {{ user.prenom }}</li>
+                    <li class="list-group-item"><label>Nom:</label> {{ user.nom }}</li>
+                    <li class="list-group-item"><label>Email:</label> {{ user.email }}</li>
+                    <li class="list-group-item"><label>Téléphone:</label> {{ user.telephone }}</li>
+                    <li class="list-group-item"><label>Adresse:</label> {{ user.adresse }}</li>                    
+                    <li class="list-group-item"><label>Ville:</label> {{ user.ville }}</li>
+                    <li class="list-group-item"><label>Code Postal:</label> {{ user.cp }}</li>
+                </ul>
+                <a href="{{ path('app_profil_edit') }}" class="btn btn-primary">Modifier le profil</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

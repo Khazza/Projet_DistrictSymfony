@@ -1,0 +1,483 @@
+/* -------- */
+/* Base CSS */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; 
+}
+.main-content-wrapper {
+    flex: 1; 
+}
+.navbar {
+    flex-shrink: 0; /* Cela garantit que la barre de navigation ne rétrécira pas si le contenu dépasse la hauteur de la fenêtre de visualisation */
+}
+.footer {
+    flex-shrink: 0; /* Le footer ne rétrécit pas non plus */
+}
+.footer-link {
+    margin-right: 20px;  /* Espace ajouté à droite de chaque lien */
+}
+
+/* ------------------ */
+/* CSS Search results */
+.horizontal-plat-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.horizontal-plat-card .img-fluid {
+    object-fit: cover;
+    height: 100%;
+}
+
+.horizontal-plat-card .card-footer {
+    padding: 0;
+    border-top: none;
+    background-color: transparent;
+}
+
+.horizontal-plat-card .card-title {
+    font-size: 1.25rem;
+}
+
+.horizontal-plat-card .card-text {
+    font-size: 1rem;
+}
+
+.horizontal-plat-card .btn {
+    font-size: 0.875rem;
+}
+.recherche-results {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.jumbotron-home {
+    background-image: url('/img/fosyyyy.jpg');
+    background-size: cover;
+    background-position: center center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    height: 350px;
+    background-color: transparent;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+}
+.jumbotron-home h1, .jumbotron-home p {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.5); 
+    padding: 10px;
+    border-radius: 10px;
+}
+
+/* -------- */
+/* Home CSS */
+.category-card {
+    transition: transform .2s;
+}
+.category-card:hover {
+    transform: scale(1.05);
+}
+
+.food-card {
+    transition: transform .2s;
+}
+.food-card:hover {
+    transform: scale(1.05);
+}
+.card{
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgb(0, 0, 0, 0.1);
+}
+.card:hover{
+    box-shadow: 0 6px 12px rgb(0, 0, 0, 0.1);
+    transform: translateY(-5px);
+    transition: all 0.3s ease;
+}
+.no-hover-card:hover {
+    box-shadow: 0 4px 8px rgb(0, 0, 0, 0.1);  /* reset l'ombre à la valeur par défaut */
+    transform: translateY(0);  /* annule le déplacement */
+    transition: none;  /* annule la transition */
+}
+.card-img-top{
+    filter: brightness(90%);
+}
+.card:hover .card-img-top{
+    filter: brightness(100%);
+    transition: all 0.3s ease;
+}
+.card-title{
+    font-size: 1.5rem;
+    color: #007bff;
+    font-weight: bold;
+    font-family: 'Dancing Script', cursive;
+    font-weight: 600;
+    font-size: 1.8rem;
+}
+.card-title:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+.container {
+    text-align: center;
+}
+.section-title {
+    border-bottom: 3px solid #007bff;
+    display: inline-block;
+    padding-bottom: 8px;
+    margin-bottom: 25px;
+    font-weight: bold;
+}
+
+/* ------------- */
+/* Plats Cat CSS */
+.horizontal-plat-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.horizontal-plat-card .img-fluid {
+    object-fit: cover;
+    height: 100%;
+}
+
+
+.horizontal-plat-card .card-footer {
+    padding: 0;
+    border-top: none;
+    background-color: transparent;
+}
+
+/* --------- */
+/* Plats CSS */
+.section-titlePlat {
+    border-top: 3px solid #007bff;
+    border-bottom: 3px solid #007bff;
+    padding-bottom: 8px;
+    padding-top: 8px;
+    margin-bottom: 25px;
+    font-weight: bold;
+}
+.category-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+#filter-category {
+    padding: 10px;
+    border: 2px solid #007bff;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    appearance: none;
+    width: auto;
+    font-size: 1rem;
+    outline: none;
+    background-image: linear-gradient(45deg, transparent 50%, #007bff 50%), linear-gradient(135deg, #007bff 50%, transparent 50%);
+    background-position: calc(100% - 20px) 50%, calc(100% - 15px) 50%;
+    background-size: 5px 5px, 5px 5px;
+    background-repeat: no-repeat;
+}
+#filter-category:hover {
+    border-color: #0056b3;
+}
+
+#filter-category:focus {
+    border-color: #004591;
+    box-shadow: 0 0 0 3px rgba(0,123,255,0.25);
+}
+
+/* ---------- */
+/* CSS Profil */
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.profile-card {
+    width: 80%;
+    border-radius: 10px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 2px solid #007bff;
+}
+
+.profile-card h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #007bff;
+}
+
+.profile-card .card-title {
+    font-size: 1.5rem;
+    color: #007bff;
+    margin-bottom: 15px;
+}
+
+.profile-card .list-group-item {
+    border: none;
+    padding: 10px 0;
+    font-size: 1.2rem;
+    /* font-family: 'Courier New', Courier, monospace; */
+}
+
+.profile-card .list-group-item label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.profile-card .list-group-item:nth-child(even) {
+    background-color: #f1f1f1;
+}
+
+/* -------- */
+/* Form CSS */
+.contact-form {
+    border: 2px solid #ccc;
+    border-radius: 10px;
+}
+
+.contact-form h2 {
+    font-size: 2em;
+}
+
+.contact-form label {
+    color: #333;
+}
+
+.my-custom-class-for-errors {
+    color: red;
+    font-weight: bold;
+}
+
+.btn-primary {
+    background-color: #007BFF;
+    border-color: #007BFF;
+    color: #ffffffc9;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+    color: #ffffff;
+}
+
+.register-page .custom-label {
+    font-weight: bold;
+}
+
+.register-page .form-control.custom-input {
+    border-radius: 0.5rem;
+}
+
+.register-page .btn.btn-lg.btn-primary.btn-block.custom-button {
+    background: linear-gradient(to right, #007bff, #0056b3);
+    border: none;
+}
+
+.register-page .btn.btn-lg.btn-primary.btn-block.custom-button:hover {
+    background: linear-gradient(to right, #0056b3, #004591);
+}
+
+.register-page .form-error {
+    color: red;
+    font-size: 0.8em;
+}
+.register-page .form-check-input.custom-checkbox {
+    margin-top: 0.3em;
+    margin-right: 0.5em;
+    width: 20px;
+    height: 20px;
+}
+.register-page .form-check-label.custom-label {
+    display: inline;
+    line-height: 20px;
+    vertical-align: middle;
+}
+.left-align {
+    text-align: left;
+}
+
+/* --------- */
+/* Login CSS */
+.login-page .font-weight-bold {
+    font-weight: bold;
+}
+
+.login-page .form-control.form-control-lg {
+    border-radius: 0.5rem;
+}
+
+.login-page .btn-primary.btn-lg.btn-block {
+    background: linear-gradient(to right, #007bff, #0056b3);
+    border: none;
+}
+
+.login-page .btn-primary.btn-lg.btn-block {
+    transition: background 0.2s ease-in-out;
+}
+
+.login-page .btn-primary.btn-lg.btn-block:hover {
+    background: linear-gradient(to right, #0056b3, #004591);
+}
+
+/* ------------------- */
+/* Legal - Privacy CSS */
+.legal-and-privacy {
+    padding: 2rem;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    font-family: Arial, sans-serif;
+    color: #555;
+    line-height: 1.6;
+}
+
+.legal-and-privacy h1 {
+    border-bottom: 3px solid #343a40;
+    padding-bottom: 0.5rem;
+    margin-bottom: 2rem;
+    color: #343a40;
+    font-weight: 600;
+}
+
+.legal-and-privacy h2 {
+    margin-top: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: #444;
+    font-weight: 500;
+    border-left: 4px solid #343a40;
+    padding-left: 15px;
+}
+
+.legal-and-privacy p, .legal-and-privacy address {
+    margin-bottom: 1.5rem;
+    font-size: 0.95em;
+}
+
+.legal-and-privacy strong {
+    color: #343a40;
+}
+
+.legal-and-privacy a {
+    color: #007BFF;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.legal-and-privacy a:hover {
+    color: #0056b3;
+}
+
+.legal-and-privacy address {
+    font-style: normal;
+    padding-left: 15px;
+    border-left: 2px solid #ddd;
+}
+
+/* ------------------ */
+/* css jumbotron home */
+.jumbotron-home .form-inline {
+    max-width: 600px;
+    width: 100%;
+    justify-content: center;
+    margin: auto;
+}
+
+.jumbotron-home .form-inline .form-control {
+    border-radius: 20px 0 0 20px;
+    border-right: none;
+}
+
+.jumbotron-home .form-inline .btn {
+    border-radius: 0 20px 20px 0;
+}
+
+.jumbotron-home .form-inline .btn i {
+    margin-right: 5px;
+}
+
+
+/* ----------------------- */
+/* CSS Commande formulaire */
+.commande-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.commande-page h1 {
+    color: #343a40;
+}
+
+.commande-page h2 {
+    margin-bottom: 20px;
+    margin-top: 20px;
+    font-size: 1.5rem;
+    color: #343a40;
+}
+.commande-page .panier-recap .list-group-item {
+    border: none;
+    border-bottom: 1px solid #ced4da;
+    border-radius: 0;
+}
+.commande-page .panier-recap .list-group-item:last-child {
+    border-bottom: none;
+}
+.commande-page .panier-recap {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.commande-page .bg-primary {
+    background-color: #0d6efd !important;
+}
+.commande-page .form-label {
+    color: #343a40;
+    margin-bottom: 5px;
+}
+.commande-page .btn-primary {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+.commande-page .row.g-3 .col-md-6 {
+    margin-bottom: 20px;
+}
+.commande-page .form-check {
+    margin-bottom: 20px;
+}
+.commande-page .form-control {
+    border: 1px solid #ced4da;
+}
+
+/* -------------------------- */
+/* -------------------------- */
+/* -------------------------- */
+
+@media (max-width: 768px) {
+    .jumbotron-home h1 {
+        font-size: 2rem;
+    }
+    .jumbotron-home .lead {
+        font-size: 1rem;
+    }
+    .horizontal-plat-card .card-img {
+        max-height: 150px;
+        overflow: hidden;
+    }
+    .horizontal-plat-card img {
+        object-fit: cover;
+    }
+}

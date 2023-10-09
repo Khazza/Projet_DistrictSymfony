@@ -1,0 +1,73 @@
+{% block body %}
+
+    <html>
+    <head>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+            }
+            .container {
+                max-width: 600px;
+                margin: 0 auto;
+                padding: 20px;
+                border: 1px solid #e0e0e0;
+            }
+            .header {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+            .footer {
+                text-align: center;
+                margin-top: 20px;
+            }
+            .content {
+                margin-bottom: 20px;
+            }
+            .content p {
+                margin: 10px 0;
+            }
+            .content ul {
+                list-style-type: none;
+                padding: 0;
+            }
+            .content ul li {
+                margin: 5px 0;
+            }
+        </style>
+    </head>
+    <body>
+    
+    <div class="container">
+        <div class="header">
+            <h1>Confirmation de Commande</h1>
+        </div>
+    
+        <div class="content">
+            <p>Bonjour <strong>{{ username }}</strong>,</p>
+    
+            <p>Merci pour votre commande. Voici un récapitulatif :</p>
+            
+            <ul>
+            {% for article in panier %}
+                <li><strong>{{ article.plat.libelle }}</strong> x{{ article.quantite }} : {{ (article.plat.prix * article.quantite)|number_format(2, ',', ' ') }} €</li>
+            {% endfor %}
+            </ul>
+    
+            <p><strong>Total : </strong>{{ total|number_format(2, ',', ' ') }} €</p>
+            
+            <p>Vos articles seront expédiés à l'adresse suivante :</p>
+            <p>{{ adresseLivraison }}<br>
+            {{ codePostalLivraison }} {{ villeLivraison }}</p>
+        </div>
+        
+        <div class="footer">
+            <p>Merci pour votre achat,</p>
+            <p>L'équipe The District</p>
+        </div>
+    </div>
+    
+    </body>
+    </html>
+    
+    {% endblock %}
+    
