@@ -9,13 +9,13 @@ body {
     flex: 1; 
 }
 .navbar {
-    flex-shrink: 0; /* Cela garantit que la barre de navigation ne rétrécira pas si le contenu dépasse la hauteur de la fenêtre de visualisation */
+    flex-shrink: 0; 
 }
 .footer {
-    flex-shrink: 0; /* Le footer ne rétrécit pas non plus */
+    flex-shrink: 0; 
 }
 .footer-link {
-    margin-right: 20px;  /* Espace ajouté à droite de chaque lien */
+    margin-right: 20px;
 }
 
 /* ------------------ */
